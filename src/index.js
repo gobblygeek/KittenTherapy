@@ -1,8 +1,16 @@
 import React from "react";
-import {render} from 'react-dom'
-import App from './components/app'
-import "./styles.css";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+import "./index.css";
 
+ReactDOM.render(<App />, document.getElementById("root"));
 
-const rootElement = document.getElementById("root");
-render(<App />, rootElement);
+const startApp = () => {
+  ReactDOM.render(<App />, document.getElementById("root"));
+};
+
+if (!window.cordova) {
+  startApp();
+} else {
+  document.addEventListener("deviceready", startApp, false);
+}

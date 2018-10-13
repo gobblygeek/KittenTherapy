@@ -1,0 +1,13 @@
+.grow1 {
+  flex-grow: 1;
+}
+.center {
+  text-align: center;
+}
+.categories,
+.categories div[class*="MuiTabs-scroller"] {
+  overflow-x: auto;
+}
+img.cat {
+  width: 100%;
+}
