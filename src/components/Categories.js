@@ -13,48 +13,29 @@ class Catagories extends Component {
 
   handleChange(event, value) {
     this.setState({ value: value });
+    this.props.callbackParent(value);
   }
-  componentDidMount() {
-    let uri = "https://api.thecatapi.com/v1/categories?";
-    let key = "api_key=841abba3-518a-4852-a5f0-c5c8da04a947";
-    let api = uri + key;
-    fetch(api)
-      .then(res => res.json())
-      .then(
-        result => {
-          console.log("we has result?", result);
-          let categories = result.map(item => {
-            return <Tab label={item.name} key={item.id} />;
-          });
-          this.setState({
-            isLoaded: true,
-            categories: categories
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          console.log("we has error", error);
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+
+  getTabs(categories) {
+    let tabset = categories.map(item => {
+      return <Tab label={item} />;
+    });
+    return tabset;
   }
   render() {
+    const { categories } = this.props;
+    //console.log(categories);
     return (
       <Tabs
         value={this.state.value}
         onChange={this.handleChange}
         indicatorColor="primary"
         textColor="primary"
-        centered
+        scrollable
         className="categories"
       >
         <Tab label="All" />
-        {this.state.categories}
+        {this.getTabs(categories)}
       </Tabs>
     );
   }

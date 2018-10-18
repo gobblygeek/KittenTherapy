@@ -4,10 +4,6 @@
 .center {
   text-align: center;
 }
-.categories,
-.categories div[class*="MuiTabs-scroller"] {
-  overflow-x: auto;
-}
 img.cat {
   width: 100%;
 }
